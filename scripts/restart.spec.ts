@@ -35,6 +35,13 @@ test('login then restart', async ({ page }) => {
     await expect(subTabReset).toBeVisible();
     await subTabReset.click();
 
+    // Wait for Device Reset page to appear
+    await Promise.race([
+        page.locator('p#Admin_DevReboot_Subtitle').waitFor(),
+        page.waitForTimeout(10000)
+    ]);
+
     // click on Reboot button
-    await page.locator('#reboot').click();
+    await page.locator('#reboot').waitFor();
+    await page.locator('#reboot').click({ force: true });
 });
