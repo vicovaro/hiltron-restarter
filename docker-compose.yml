@@ -3,7 +3,6 @@ services:
     image: hiltron-restarter
     build: .
     env_file: .env
-    command: sh -c "yarn install && yarn playwright test"
     restart: "no"   # Critical: Prevent container restart
     tmpfs:
       - /tmp
