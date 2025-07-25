@@ -1,17 +1,17 @@
 {
-  "name": "hiltron-restarter",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "@playwright/test": "^1.54.1",
-    "@types/node": "^24.1.0"
-  },
-  "scripts": {
-    "dev": "playwright test --ui",
-    "prod": "playwright test --headed"
-  },
-  "dependencies": {
-    "dotenv": "^17.2.1"
-  }
+    "name": "hiltron-restarter",
+    "version": "1.0",
+    "main": "index.js",
+    "license": "MIT",
+    "devDependencies": {
+        "@playwright/test": "^1.54.1",
+        "@types/node": "^24.1.0"
+    },
+    "scripts": {
+        "dev": "playwright test --ui",
+        "prod": "playwright test --headed"
+    },
+    "dependencies": {
+        "dotenv": "^17.2.1"
+    }
 }
