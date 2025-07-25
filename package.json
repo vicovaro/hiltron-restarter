@@ -9,8 +9,7 @@
   },
   "scripts": {
     "dev": "playwright test --ui",
-    "test:e2e": "playwright test",
-    "test:e2e:ci": "playwright test --workers=4 --retries=2"
+    "prod": "playwright test --headed"
   },
   "dependencies": {
     "dotenv": "^17.2.1"
