@@ -14,10 +14,7 @@ test('login then restart', async ({ page }) => {
     await page.locator('#btnLogin').click();
 
     // Wait for status (main page) to appear
-    await Promise.race([
-        page.locator('span#Status_Overview_Subtitle').waitFor(),
-        page.waitForTimeout(15000)
-    ]);
+    page.locator('span#Status_Overview_Subtitle').waitFor();
 
     // click on the admin tab
     const adminBtn = page.locator('#topMenu > li > a > b', { hasText: 'Admin' });
@@ -26,7 +23,6 @@ test('login then restart', async ({ page }) => {
 
     // Wait for Admin page to appear
     page.locator('p#Admin_Management_Subtitle').waitFor();
-    page.waitForTimeout(10000);
 
     // click on device reset sub-tab
     const subTabReset = page.locator('#submenus > li > a', { hasText: 'Device Reset' });
@@ -34,10 +30,7 @@ test('login then restart', async ({ page }) => {
     await subTabReset.click();
 
     // Wait for Device Reset page to appear
-    await Promise.race([
-        page.locator('p#Admin_DevReboot_Subtitle').waitFor(),
-        page.waitForTimeout(10000)
-    ]);
+    page.locator('p#Admin_DevReboot_Subtitle').waitFor();
 
     // prepare to listen for the dialog that confirm the modem reboot
     page.on('dialog', async dialog => {
