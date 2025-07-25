@@ -25,10 +25,8 @@ test('login then restart', async ({ page }) => {
     await adminBtn.click();
 
     // Wait for Admin page to appear
-    await Promise.race([
-        page.locator('p#Admin_Management_Subtitle').waitFor(),
-        page.waitForTimeout(10000)
-    ]);
+    page.locator('p#Admin_Management_Subtitle').waitFor();
+    page.waitForTimeout(10000);
 
     // click on device reset sub-tab
     const subTabReset = page.locator('#submenus > li > a', { hasText: 'Device Reset' });
@@ -41,7 +39,14 @@ test('login then restart', async ({ page }) => {
         page.waitForTimeout(10000)
     ]);
 
+    // prepare to listen for the dialog that confirm the modem reboot
+    page.on('dialog', async dialog => {
+        const alertMessage = dialog.message(); // Capture the alert text
+        expect(alertMessage).toContain("Reboot modem?");
+        await dialog.accept(); // Automatically click "OK"
+    });
+
     // click on Reboot button
     await page.locator('#reboot').waitFor();
-    await page.locator('#reboot').click({ force: true });
+    await page.locator('#reboot').click();
 });
